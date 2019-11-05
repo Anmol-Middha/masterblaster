@@ -4,14 +4,13 @@ const morgan = require('morgan');
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(morgan('dev'));
 
 const sachinAnalysisRoute = require('./api/routes/sachinAnalysis.js');
 const fetchDataMiddleware = require('./api/middleware/fetchData');
 
-app.use('/sachin', fetchDataMiddleware ,sachinAnalysisRoute);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(morgan('dev'));
 
 app.use((req, res, next) =>{
     res.header('Access-Control-Allow-Origin', '*');
@@ -24,6 +23,8 @@ app.use((req, res, next) =>{
     }
     next();
 })
+
+app.use('/sachin', fetchDataMiddleware ,sachinAnalysisRoute);
 
 app.use((req, res, next)=>{
     const error = new Error('Not Found');
