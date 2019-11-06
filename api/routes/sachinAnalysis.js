@@ -126,7 +126,7 @@ router.post('/team', (req, res)=>{
         let status = record.match_result;
 
         if(!isNaN(runs)){
-            victory_data.push({[runs]: status});
+            victory_data.push({runs: [runs], status: [status]});
         }
         if(!isNaN(runs) && status == "won"){
             win_matches++;
