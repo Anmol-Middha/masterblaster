@@ -93,7 +93,7 @@ res.status(200).json(location_data);
 router.post('/country', (req, res)=>{
     let country_data = [];
     req.data.forEach((record)=>{
-        let country = record.opposition.split(" ")[1];
+        let country = record.opposition.split("v ")[1];
         let score = parseInt(record.batting_score);
     
         if(!isNaN(score)){
