@@ -114,37 +114,48 @@ router.post('/country', (req, res)=>{
 });
 
 router.post('/team', (req, res)=>{
-    let victory_data = [];
-    let win_matches = 0;
-    let victory_runs = 0;
-    let lost_matches = 0;
-    let lost_runs = 0;
-    let tied_matches = 0;
-    let tied_runs = 0;
+    let victory_data = {
+        "0-30": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
+        "31-50":{"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0} , 
+        "51-80": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
+        "81-100": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
+        "101-150": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
+        "151-200": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}
+    };
+
     req.data.forEach((record)=>{
         let runs = parseInt(record.batting_score);
         let status = record.match_result;
 
         if(!isNaN(runs)){
-            victory_data.push({runs: runs, status: status});
+            if(runs>=0 && runs<=30){
+                victory_data["0-30"][status]++;
+                victory_data["0-30"]["total_matches"]++;
+            }
+            else if(runs<=50){
+                victory_data["31-50"][status]++;
+                victory_data["31-50"]["total_matches"]++;
+            }
+            else if(runs<=80){
+                victory_data["51-80"][status]++;
+                victory_data["51-80"]["total_matches"]++;
+            }
+            else if(runs<=100){
+                victory_data["81-100"][status]++;
+                victory_data["81-100"]["total_matches"]++;
+            }
+            else if(runs<=150){
+                victory_data["101-150"][status]++;
+                victory_data["101-150"]["total_matches"]++;
+            }
+            else if(runs<=200){
+                victory_data["151-200"][status]++;
+                victory_data["151-200"]["total_matches"]++;
+            }
         }
-        if(!isNaN(runs) && status == "won"){
-            win_matches++;
-            victory_runs += runs;
-        }
-        if(!isNaN(runs) && status == "lost"){
-            lost_matches++;
-            lost_runs += runs;
-        }
-        if(!isNaN(runs) && status == "tied"){
-            tied_matches++;
-            tied_runs += runs;
-        }
+        
     });
-    let victory_avgruns = victory_runs/win_matches;
-    let lost_avgruns = lost_runs/lost_matches;
-    let tied_avgruns = tied_runs/tied_matches;
-    res.status(200).json({data: victory_data, sachin_vict_avg: victory_avgruns, sachin_lost_avg: lost_avgruns, sachin_tied_avg: tied_avgruns});
+    res.status(200).json({data: victory_data});
 }); 
 
 router.post('/year', (req, res)=>{
