@@ -123,9 +123,11 @@ router.post('/team', (req, res)=>{
         "151-200": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}
     };
 
+    let total_matches = 0;
     req.data.forEach((record)=>{
         let runs = parseInt(record.batting_score);
         let status = record.match_result;
+        
 
         if(!isNaN(runs)){
             if(runs>=0 && runs<=30){
@@ -152,10 +154,11 @@ router.post('/team', (req, res)=>{
                 victory_data["151-200"][status]++;
                 victory_data["151-200"]["total_matches"]++;
             }
+            total_matches++;
         }
         
     });
-    res.status(200).json({data: victory_data});
+    res.status(200).json({"data": [victory_data], "matches": total_matches});
 }); 
 
 router.post('/year', (req, res)=>{
