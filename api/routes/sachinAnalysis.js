@@ -58,9 +58,9 @@ router.post('/info', (req, res)=>{
     personal_info.two_hundreds = two_hundreds;
     personal_info.centuries = centuries;
     personal_info.fifties = fifties;
-    personal_info.bat_avg = total_run/matches;
+    personal_info.bat_avg = (total_run/matches).toFixed(2);
     personal_info.wickets = total_wickets;
-    personal_info.bowl_avg = total_runs_conceded/total_wickets;
+    personal_info.bowl_avg = (total_runs_conceded/total_wickets).toFixed(2);
     personal_info.catch = total_catches;
     personal_info.stump = total_stumps;
 
@@ -76,18 +76,20 @@ req.data.forEach((record)=>{
     if(!isNaN(score)){
         let flag = 0;
         for(var i=0; i<location_data.length; i++){
-            if(location_data[i].hasOwnProperty(location)){
+            if(location_data[i].loc == location){
                 flag = 1;
-                location_data[i][location] += score;
+                location_data[i].runs += score;
+                location_data[i].matches ++;
                 break;
             }
         }
         if(flag == 0){
-            location_data.push({[location]: score});
+            location_data.push({loc: location, runs: score, matches :1});
         }
     }
+    
 })
-res.status(200).json(location_data);
+res.status(200).json({data: location_data});
 });  
 
 router.post('/country', (req, res)=>{
@@ -166,9 +168,7 @@ router.post('/year', (req, res)=>{
     let yearrecord = {"1989": {total_run: 0, matches: 0, bat_avg: 0, centuries: 0}};
 
     req.data.forEach(record=>{
-        // console.log(typeof(record.date));
-        let year = record.date.split(" ")[2];
-        // console.log(typeof(year)); 
+        let year = record.date.split(" ")[2]; 
         let run = parseInt(record.batting_score);
         let flag = 1;
         for(let i=0; i<yeardata.length; i++){
@@ -178,7 +178,7 @@ router.post('/year', (req, res)=>{
                     yeardata[i][year].centuries+=1;
                 }
                 yeardata[i][year].matches+=1;
-                yeardata[i][year].bat_avg = yeardata[i][year].total_run / yeardata[i][year].matches;
+                yeardata[i][year].bat_avg = (yeardata[i][year].total_run / yeardata[i][year].matches).toFixed(2);
                 flag = 0;
             }
         }
