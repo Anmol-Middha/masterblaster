@@ -117,12 +117,12 @@ router.post('/country', (req, res)=>{
 
 router.post('/team', (req, res)=>{
     let victory_data = {
-        "0-30": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
-        "31-50":{"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0} , 
-        "51-80": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
-        "81-100": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
-        "101-150": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}, 
-        "151-200": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}
+        "0-30": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}, 
+        "31-50":{"won": 0, "lost": 0, "tied": 0, "n/r": 0} , 
+        "51-80": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}, 
+        "81-100": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}, 
+        "101-150": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}, 
+        "151-200": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}
     };
 
     
