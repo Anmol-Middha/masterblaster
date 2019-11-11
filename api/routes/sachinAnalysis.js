@@ -125,6 +125,8 @@ router.post('/team', (req, res)=>{
         "151-200": {"won": 0, "lost": 0, "tied": 0, "n/r": 0, "total_matches": 0}
     };
 
+    
+
     let total_matches = 0;
     req.data.forEach((record)=>{
         let runs = parseInt(record.batting_score);
@@ -134,33 +136,33 @@ router.post('/team', (req, res)=>{
         if(!isNaN(runs)){
             if(runs>=0 && runs<=30){
                 victory_data["0-30"][status]++;
-                victory_data["0-30"]["total_matches"]++;
+                // victory_data["0-30"]["total_matches"]++;
             }
             else if(runs<=50){
                 victory_data["31-50"][status]++;
-                victory_data["31-50"]["total_matches"]++;
+                // victory_data["31-50"]["total_matches"]++;
             }
             else if(runs<=80){
                 victory_data["51-80"][status]++;
-                victory_data["51-80"]["total_matches"]++;
+                // victory_data["51-80"]["total_matches"]++;
             }
             else if(runs<=100){
                 victory_data["81-100"][status]++;
-                victory_data["81-100"]["total_matches"]++;
+                // victory_data["81-100"]["total_matches"]++;
             }
             else if(runs<=150){
                 victory_data["101-150"][status]++;
-                victory_data["101-150"]["total_matches"]++;
+                // victory_data["101-150"]["total_matches"]++;
             }
             else if(runs<=200){
                 victory_data["151-200"][status]++;
-                victory_data["151-200"]["total_matches"]++;
+                // victory_data["151-200"]["total_matches"]++;
             }
             total_matches++;
         }
         
     });
-    res.status(200).json({"data": [victory_data], "matches": total_matches});
+    res.status(200).json({"data": victory_data, "matches": total_matches});
 }); 
 
 router.post('/year', (req, res)=>{
