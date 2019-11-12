@@ -3,7 +3,7 @@ const router = express.Router();
 
 //route to get 50s of each player
 router.post('/50s', (req, res)=>{
-    let players = ["E Chigumbura (Afr/ZIM)", "DI Gower (ENG)", "SR Tendulkar (INDIA)"];
+    let players = req.body.players;
     let rslt = [];
     players.forEach(record => {
         req.data.find((d) =>{
@@ -18,7 +18,7 @@ router.post('/50s', (req, res)=>{
 
 //route to get centuries of each player
 router.post('/100s', (req, res)=>{
-    let players = ["E Chigumbura (Afr/ZIM)", "DI Gower (ENG)", "SR Tendulkar (INDIA)"];
+    let players = req.body.players;
     let rslt = [];
     players.forEach(record => {
         req.data.find((d) =>{
@@ -33,7 +33,7 @@ router.post('/100s', (req, res)=>{
 
 //route to get 0s of each player
 router.post('/0s', (req, res)=>{
-    let players = ["E Chigumbura (Afr/ZIM)", "DI Gower (ENG)", "SR Tendulkar (INDIA)"];
+    let players = req.body.players;
     let rslt = [];
     players.forEach(record => {
         req.data.find((d) =>{
@@ -48,7 +48,7 @@ router.post('/0s', (req, res)=>{
 
 //route to compare totalruns and highest score of each player
 router.post('/totalruns', (req, res)=>{
-    let players = ["E Chigumbura (Afr/ZIM)", "DI Gower (ENG)", "SR Tendulkar (INDIA)"];
+    let players = req.body.players;
     let rslt = [];
     players.forEach(record => {
         req.data.find((d) =>{
@@ -67,7 +67,7 @@ router.post('/totalruns', (req, res)=>{
 
 //router to compare Batting average and Mean strike of every player
 router.post('/batavg', (req, res)=>{
-    let players = ["E Chigumbura (Afr/ZIM)", "DI Gower (ENG)", "SR Tendulkar (INDIA)"];
+    let players = req.body.players;
     let rslt = [];
     players.forEach(record => {
         req.data.find((d) =>{
