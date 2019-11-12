@@ -4,9 +4,10 @@ const morgan = require('morgan');
 
 const app = express();
 
-
 const sachinAnalysisRoute = require('./api/routes/sachinAnalysis.js');
-const fetchDataMiddleware = require('./api/middleware/fetchData');
+const comparisonAnalysis = require('./api/routes/comparison.js');
+const fetchDataMiddleware = require('./api/middleware/fetchData.js');
+const fetchComparisonMiddleware = require('./api/middleware/fetchComparsion.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,6 +26,7 @@ app.use((req, res, next) =>{
 })
 
 app.use('/sachin', fetchDataMiddleware ,sachinAnalysisRoute);
+app.use('/comparison', fetchComparisonMiddleware, comparisonAnalysis);
 
 app.use((req, res, next)=>{
     const error = new Error('Not Found');
