@@ -4,16 +4,17 @@ const router = express.Router();
 //route to get 50s of each player
 router.post('/50s', (req, res)=>{
     let players = req.body.players;
-    let rslt = [];
-    players.forEach(record => {
-        req.data.find((d) =>{
-            if(d.Player == record){
-                const temp = {"name": record.split(" (")[0],"fifties": parseInt(d["50"]), "rate": parseFloat(d["50"]/d["Inns"]).toFixed(2)};
-                rslt.push(temp);
-            }
-        });
-    });
-    res.status(200).json(rslt);
+    res.send(req);
+    // let rslt = [];
+    // players.forEach(record => {
+    //     req.data.find((d) =>{
+    //         if(d.Player == record){
+    //             const temp = {"name": record.split(" (")[0],"fifties": parseInt(d["50"]), "rate": parseFloat(d["50"]/d["Inns"]).toFixed(2)};
+    //             rslt.push(temp);
+    //         }
+    //     });
+    // });
+    // res.status(200).json(rslt);
 });
 
 //route to get centuries of each player
