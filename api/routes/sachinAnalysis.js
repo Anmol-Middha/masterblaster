@@ -17,15 +17,18 @@ router.post('/info', (req, res)=>{
     req.data.forEach((record) => {
         let run = parseInt(record.batting_score);
         if(!isNaN(run)){
-            total_run += run
-            matches++;
+            total_run += run;
+            let notouts = record.batting_score.split("*");
+            if(notouts.length == 1){
+                matches++;
+            }
             if(run > bat_max){
                 bat_max = run;
             }
             if(run >= 200){
                 two_hundreds++;
             }
-            if(run >= 100 && run<200){
+            if(run >= 100){
                 centuries++;
             }
             if(run>=50 && run<100){
