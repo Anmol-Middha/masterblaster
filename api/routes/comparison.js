@@ -8,7 +8,7 @@ router.post('/50s', (req, res)=>{
     players.forEach(record => {
         req.data.find((d) =>{
             if(d.Player == record){
-                const temp = {"name": record.split(" (")[0],"fifties": parseInt(d["50"]), "rate": parseFloat(d["50"]/d["Inns"]).toFixed(2)};
+                const temp = {"name": record.split(" (")[0],"fifties": parseInt(d["50"]), "rate": parseFloat(d["50"]/d["Inns"]).toFixed(3)};
                 rslt.push(temp);
             }
         });
