@@ -57,7 +57,7 @@ router.post('/totalruns', (req, res)=>{
                 if(d["HS"].split("*").length == 2){
                     HSstatus = "Not Out";
                 }
-                const temp = {"name": record.split(" (")[0], "totol_runs": parseInt(d["Runs"]), "HS":parseInt(d["HS"].split('*')), "HS_status":HSstatus};
+                const temp = {"name": record.split(" (")[0], "total_runs": parseInt(d["Runs"]), "HS":parseInt(d["HS"].split('*')), "HS_status":HSstatus};
                 rslt.push(temp);
             }
         });
