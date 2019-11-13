@@ -1,3 +1,6 @@
+//fetching sachin.csv and creating its json object.
+//passing this json object to routes as req.data
+
 const csv = require('csv-parser');
 const fs = require('fs');
 const path = require('path');

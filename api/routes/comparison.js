@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+//rote to send all player names
 router.post('/', (req, res)=>{
     let player_names = []
     req.data.forEach((d)=>{
