@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+router.post('/', (req, res)=>{
+    let player_names = []
+    req.data.forEach((d)=>{
+        temp = {"name": d["Player"]};
+        player_names.push(temp);
+    })
+    res.status(200).json(player_names);
+});
+
 //route to get 50s of each player
 router.post('/50s', (req, res)=>{
     let players = req.body.players;
