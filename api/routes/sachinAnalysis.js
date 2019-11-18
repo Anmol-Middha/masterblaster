@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //get the personal info of sachin
-router.post('/info', (req, res)=>{
+router.get('/info', (req, res)=>{
     let personal_info = {name: "Sachin Tendulkar", total_run: 0, hs: 0, two_hundreds: 0, centuries: 0, fifties: 0, bat_avg: 0, wickets: 0, bowl_avg: 0, catch: 0,stump: 0}
     let total_run = 0;
     let matches = 0;
@@ -72,7 +72,7 @@ router.post('/info', (req, res)=>{
 });
 
 // scores vs grounds where sachin played
-router.post('/ground', (req, res) =>{
+router.get('/ground', (req, res) =>{
 let location_data = [];
 req.data.forEach((record)=>{
     let location = record.ground;
@@ -98,7 +98,7 @@ res.status(200).json({data: location_data});
 });  
 
 // total runs vs oponents teams
-router.post('/country', (req, res)=>{
+router.get('/country', (req, res)=>{
     let country_data = [];
     req.data.forEach((record)=>{
         let country = record.opposition.split("v ")[1];
@@ -122,7 +122,7 @@ router.post('/country', (req, res)=>{
 });
 
 //score ranges vs india victory
-router.post('/team', (req, res)=>{
+router.get('/team', (req, res)=>{
     let victory_data = {
         "0-30": {"won": 0, "lost": 0, "tied": 0, "n/r": 0}, 
         "31-50":{"won": 0, "lost": 0, "tied": 0, "n/r": 0} , 
@@ -167,7 +167,7 @@ router.post('/team', (req, res)=>{
 }); 
 
 //every year performance of sachin
-router.post('/year', (req, res)=>{
+router.get('/year', (req, res)=>{
     let yeardata = [];
     let yearrecord = {"1989": {total_run: 0, matches: 0, bat_avg: 0, centuries: 0}};
 
